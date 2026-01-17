@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>E-Learning Platform</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0ca79f;
+        text-align: center;
+    }
+
+    /* HOME PAGE */
+    .home {
+        height: 100vh;
+        background: linear-gradient(to right, #4CAF50, #2196F3);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .home h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .home p {
+        font-size: 18px;
+        width: 70%;
+    }
+
+    .home button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 16px;
+        background: white;
+        color: #333;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* LOGIN */
+    .box {
+        width: 340px;
+        margin: 100px auto;
+        background: linear-gradient(to right, #4CAF50, #2196F3);
+        padding: 20px;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        background: #4CAF50;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 8px;
+    }
+
+    #loginPage, #dashboard {
+        display: none;
+    }
+
+    /* DASHBOARD */
+    .card {
+        background: linear-gradient(to right, #4CAF50, #2196F3);
+        width: 340px;
+        margin: 15px auto;
+        padding: 15px;
+        border-radius: 6px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+
+    iframe {
+        width: 100%;
+        height: 200px;
+        border-radius: 6px;
+    }
+
+    .logout {
+        background: #f44336;
+        margin-bottom: 30px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="home" id="homePage">
+    <h1>📚 Smart E-Learning Platform</h1>
+    <p>
+        Learn anytime, anywhere using our online classes and online examination system.
+        This platform provides digital learning experience for students.
+    </p>
+    <button onclick="goToLogin()">Get Started</button>
+</div>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div id="loginPage" class="box">
+    <h2>Student Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard">
+    <h2>Welcome to E-Learning</h2>
+
+    <!-- ONLINE CLASS -->
+    <div class="card">
+        <h3>🎥 Online Class</h3>
+        <p>Topic: HTML Basics</p>
+        <iframe src="https://www.youtube.com/embed/pQN-pnXPaVg" allowfullscreen></iframe>
+    </div>
+
+    <!-- ONLINE EXAM -->
+    <div class="card">
+        <h3>📝 Online Exam</h3>
+        <p><b>Q.</b> HTML stands for?</p>
+        <input type="radio" name="q1" value="wrong"> Hyper Tool Markup Language<br>
+        <input type="radio" name="q1" value="correct"> Hyper Text Markup Language<br>
+        <input type="radio" name="q1" value="wrong"> High Text Machine Language<br><br>
+        <button onclick="submitExam()">Submit Exam</button>
+        <p id="examResult"></p>
+    </div>
+
+    <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<script>
+    function goToLogin() {
+        document.getElementById("homePage").style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
+    }
+
+    function login() {
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+
+        if (user === "student" && pass === "1234") {
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+        } else {
+            document.getElementById("error").innerText = "Invalid Login!";
+        }
+    }
+
+    function submitExam() {
+        let options = document.getElementsByName("q1");
+        let score = 0;
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked && options[i].value === "correct") {
+                score = 1;
+            }
+        }
+
+        document.getElementById("examResult").innerText =
+            "Your Score: " + score + " / 1";
+    }
+
+    function logout() {
+        location.reload();
+    }
+</script>
+
+</body>
+</html>
