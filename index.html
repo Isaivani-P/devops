@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>E-Learning Web App</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+}
+
+/* Login */
+#loginBox {
+    width: 320px;
+    margin: 120px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #aaa;
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #1e40af;
+}
+
+/* Dashboard */
+#dashboard {
+    display: none;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.course-list {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.course {
+    background: white;
+    width: 250px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px #aaa;
+}
+
+.course h3 {
+    margin-top: 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginBox">
+    <h2>Student Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="msg" style="color:red;"></p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+    <header>
+        <h2>E-Learning Dashboard</h2>
+        <p>Welcome, <span id="user"></span></p>
+    </header>
+
+    <div class="course-list">
+        <div class="course">
+            <h3>HTML Basics</h3>
+            <p>Learn structure of web pages</p>
+            <button onclick="openCourse('HTML')">Start</button>
+        </div>
+
+        <div class="course">
+            <h3>CSS Styling</h3>
+            <p>Design beautiful websites</p>
+            <button onclick="openCourse('CSS')">Start</button>
+        </div>
+
+        <div class="course">
+            <h3>JavaScript</h3>
+            <p>Make websites interactive</p>
+            <button onclick="openCourse('JavaScript')">Start</button>
+        </div>
+        <!-- YOUTUBE VIDEO SECTION -->
+<div id="youtubeSection" style="display:none; padding:20px; text-align:center;">
+    <h2 id="ytTitle"></h2>
+
+    <iframe id="ytVideo"
+        width="700"
+        height="400"
+        src=""
+        frameborder="0"
+        allowfullscreen>
+    </iframe>
+
+    <br><br>
+    <button onclick="closeYT()">Close</button>
+</div>
+
+
+    </div>
+
+    <center>
+        <h3 id="courseMsg"></h3>
+    </center>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if (user === "student" && pass === "1234") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("user").innerText = user;
+    } else {
+        document.getElementById("msg").innerText = "Invalid Login!";
+    }
+}
+
+function openCourse(course) {
+    document.getElementById("courseMsg").innerText =
+        course + " course started 🎉";
+}
+function openCourse(course) {
+    let video = document.getElementById("ytVideo");
+    let title = document.getElementById("ytTitle");
+
+    if (course === "HTML") {
+        video.src = "https://www.youtube.com/embed/pQN-pnXPaVg";
+        title.innerText = "HTML Basics";
+    }
+    else if (course === "CSS") {
+        video.src = "https://www.youtube.com/embed/yfoY53QXEnI";
+        title.innerText = "CSS Styling";
+    }
+    else if (course === "JavaScript") {
+        video.src = "https://www.youtube.com/embed/W6NZfCO5SIk";
+        title.innerText = "JavaScript Basics";
+    }
+
+    document.getElementById("youtubeSection").style.display = "block";
+}
+
+function closeYT() {
+    document.getElementById("ytVideo").src = "";
+    document.getElementById("youtubeSection").style.display = "none";
+}
+</script>
+
+</body>
+</html>
