@@ -2,181 +2,183 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>E-Learning Web App</title>
+<title>E-Learning Platform</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f4f6f8;
-}
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0ca79f;
+        text-align: center;
+    }
 
+    /* HOME PAGE */
+    .home {
+        height: 100vh;
+        background: linear-gradient(to right, #4CAF50, #2196F3);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-/* Login */
-#loginBox {
-    width: 320px;
-    margin: 120px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #aaa;
-    text-align: center;
-}
+    .home h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
 
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-}
+    .home p {
+        font-size: 18px;
+        width: 70%;
+    }
 
-button {
-    padding: 10px 20px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
+    .home button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 16px;
+        background: white;
+        color: #333;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-button:hover {
-    background: #1e40af;
-}
+    /* LOGIN */
+    .box {
+        width: 340px;
+        margin: 100px auto;
+        background: linear-gradient(to right, #4CAF50, #2196F3);
+        padding: 20px;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-/* Dashboard */
-#dashboard {
-    display: none;
-}
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+    }
 
-header {
-    background: #2563eb;
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
+    button {
+        padding: 10px 15px;
+        border: none;
+        background: #4CAF50;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 8px;
+    }
 
-.course-list {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
-}
+    #loginPage, #dashboard {
+        display: none;
+    }
 
-.course {
-    background: white;
-    width: 250px;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px #aaa;
-}
+    /* DASHBOARD */
+    .card {
+        background: linear-gradient(to right, #4CAF50, #2196F3);
+        width: 340px;
+        margin: 15px auto;
+        padding: 15px;
+        border-radius: 6px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        text-align: left;
+    }
 
-.course h3 {
-    margin-top: 0;
-}
+    iframe {
+        width: 100%;
+        height: 200px;
+        border-radius: 6px;
+    }
+
+    .logout {
+        background: #f44336;
+        margin-bottom: 30px;
+    }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="loginBox">
+<!-- ===== HOME PAGE ===== -->
+<div class="home" id="homePage">
+    <h1>📚 Smart E-Learning Platform</h1>
+    <p>
+        Learn anytime, anywhere using our online classes and online examination system.
+        This platform provides digital learning experience for students.
+    </p>
+    <button onclick="goToLogin()">Get Started</button>
+</div>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div id="loginPage" class="box">
     <h2>Student Login</h2>
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
     <button onclick="login()">Login</button>
-    <p id="msg" style="color:red;"></p>
+    <p id="error" style="color:red;"></p>
 </div>
 
-<!-- DASHBOARD -->
+<!-- ===== DASHBOARD ===== -->
 <div id="dashboard">
-    <header>
-        <h2>E-Learning Dashboard</h2>
-        <p>Welcome, <span id="user"></span></p>
-    </header>
+    <h2>Welcome to E-Learning</h2>
 
-    <div class="course-list">
-        <div class="course">
-            <h3>HTML Basics</h3>
-            <p>Learn structure of web pages</p>
-            <button onclick="openCourse('HTML')">Start</button>
-        </div>
-
-        <div class="course">
-            <h3>CSS Styling</h3>
-            <p>Design beautiful websites</p>
-            <button onclick="openCourse('CSS')">Start</button>
-        </div>
-
-        <div class="course">
-            <h3>JavaScript</h3>
-            <p>Make websites interactive</p>
-            <button onclick="openCourse('JavaScript')">Start</button>
-        </div>
-        <!-- YOUTUBE VIDEO SECTION -->
-<div id="youtubeSection" style="display:none; padding:20px; text-align:center;">
-    <h2 id="ytTitle"></h2>
-
-    <iframe id="ytVideo"
-        width="700"
-        height="400"
-        src=""
-        frameborder="0"
-        allowfullscreen>
-    </iframe>
-
-    <br><br>
-    <button onclick="closeYT()">Close</button>
-</div>
-
-
+    <!-- ONLINE CLASS -->
+    <div class="card">
+        <h3>🎥 Online Class</h3>
+        <p>Topic: HTML Basics</p>
+        <iframe src="https://www.youtube.com/embed/pQN-pnXPaVg" allowfullscreen></iframe>
     </div>
 
-    <center>
-        <h3 id="courseMsg"></h3>
-    </center>
+    <!-- ONLINE EXAM -->
+    <div class="card">
+        <h3>📝 Online Exam</h3>
+        <p><b>Q.</b> HTML stands for?</p>
+        <input type="radio" name="q1" value="wrong"> Hyper Tool Markup Language<br>
+        <input type="radio" name="q1" value="correct"> Hyper Text Markup Language<br>
+        <input type="radio" name="q1" value="wrong"> High Text Machine Language<br><br>
+        <button onclick="submitExam()">Submit Exam</button>
+        <p id="examResult"></p>
+    </div>
+
+    <button class="logout" onclick="logout()">Logout</button>
 </div>
 
 <script>
-function login() {
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
-
-    if (user === "student" && pass === "1234") {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
-        document.getElementById("user").innerText = user;
-    } else {
-        document.getElementById("msg").innerText = "Invalid Login!";
-    }
-}
-
-function openCourse(course) {
-    document.getElementById("courseMsg").innerText =
-        course + " course started 🎉";
-}
-function openCourse(course) {
-    let video = document.getElementById("ytVideo");
-    let title = document.getElementById("ytTitle");
-
-    if (course === "HTML") {
-        video.src = "https://www.youtube.com/embed/pQN-pnXPaVg";
-        title.innerText = "HTML Basics";
-    }
-    else if (course === "CSS") {
-        video.src = "https://www.youtube.com/embed/yfoY53QXEnI";
-        title.innerText = "CSS Styling";
-    }
-    else if (course === "JavaScript") {
-        video.src = "https://www.youtube.com/embed/W6NZfCO5SIk";
-        title.innerText = "JavaScript Basics";
+    function goToLogin() {
+        document.getElementById("homePage").style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
     }
 
-    document.getElementById("youtubeSection").style.display = "block";
-}
+    function login() {
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
 
-function closeYT() {
-    document.getElementById("ytVideo").src = "";
-    document.getElementById("youtubeSection").style.display = "none";
-}
+        if (user === "student" && pass === "1234") {
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+        } else {
+            document.getElementById("error").innerText = "Invalid Login!";
+        }
+    }
+
+    function submitExam() {
+        let options = document.getElementsByName("q1");
+        let score = 0;
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked && options[i].value === "correct") {
+                score = 1;
+            }
+        }
+
+        document.getElementById("examResult").innerText =
+            "Your Score: " + score + " / 1";
+    }
+
+    function logout() {
+        location.reload();
+    }
 </script>
 
 </body>

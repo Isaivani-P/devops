@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Purple & Blue Form</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #d1c4e9, #bbdefb); /* purple to blue */
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      width: 400px;
+      margin: 50px auto;
+      padding: 25px;
+      background: #ede7f6; /* soft purple */
+      border-radius: 20px;
+      box-shadow: 5px 5px 15px #b39ddb, -5px -5px 15px #ffffff;
+      text-align: center;
+    }
+
+    h2 {
+      color: #512da8; /* dark purple */
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 12px;
+      border: 2px solid #9575cd;
+      outline: none;
+      font-size: 15px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .add-btn { background: #7e57c2; }       /* purple */
+    .update-btn { background: #42a5f5; }    /* blue */
+    .delete-btn { background: #f06292; }    /* pink/red */
+
+    .add-btn:hover { background: #673ab7; }
+    .update-btn:hover { background: #2196f3; }
+    .delete-btn:hover { background: #ec407a; }
+
+    table {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 3px 3px 10px #b39ddb;
+      background: #ede7f6;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #b39ddb;
+    }
+
+    th {
+      background: #7e57c2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Purple & Blue Form</h2>
+
+  <input type="text" id="name" placeholder="Name">
+  <input type="number" id="age" placeholder="Age">
+  <input type="text" id="city" placeholder="City">
+  <input type="email" id="email" placeholder="Email">
+
+  <br>
+  <button class="add-btn" onclick="addData()">Add</button>
+  <button class="update-btn" onclick="updateData()">Update</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<script>
+let selectedRow = null;
+
+function addData() {
+  let name = document.getElementById("name").value;
+  let age = document.getElementById("age").value;
+  let city = document.getElementById("city").value;
+  let email = document.getElementById("email").value;
+
+  if(name=="" || age=="" || city=="" || email=="") {
+    alert("Fill all fields!");
+    return;
+  }
+
+  let table = document.getElementById("tableBody");
+  let row = table.insertRow();
+
+  row.insertCell(0).innerHTML = name;
+  row.insertCell(1).innerHTML = age;
+  row.insertCell(2).innerHTML = city;
+  row.insertCell(3).innerHTML = email;
+  row.insertCell(4).innerHTML = `
+    <button class="update-btn" onclick="editRow(this)">Edit</button>
+    <button class="delete-btn" onclick="deleteRow(this)">Delete</button>
+  `;
+
+  clearForm();
+}
+
+function editRow(btn) {
+  selectedRow = btn.parentElement.parentElement;
+  document.getElementById("name").value = selectedRow.cells[0].innerHTML;
+  document.getElementById("age").value = selectedRow.cells[1].innerHTML;
+  document.getElementById("city").value = selectedRow.cells[2].innerHTML;
+  document.getElementById("email").value = selectedRow.cells[3].innerHTML;
+}
+
+function updateData() {
+  if(selectedRow == null) {
+    alert("Select a row to update!");
+    return;
+  }
+  selectedRow.cells[0].innerHTML = document.getElementById("name").value;
+  selectedRow.cells[1].innerHTML = document.getElementById("age").value;
+  selectedRow.cells[2].innerHTML = document.getElementById("city").value;
+  selectedRow.cells[3].innerHTML = document.getElementById("email").value;
+  selectedRow = null;
+  clearForm();
+}
+
+function deleteRow(btn) {
+  if(confirm("Are you sure you want to delete this record?")) {
+    btn.parentElement.parentElement.remove();
+    alert("Record deleted successfully!");
+  }
+}
+
+function clearForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("age").value = "";
+  document.getElementById("city").value = "";
+  document.getElementById("email").value = "";
+}
+</script>
+
+</body>
+</html>

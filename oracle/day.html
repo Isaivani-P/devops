@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Register</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #d1c4e9, #bbdefb); /* purple to blue */
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      width: 350px;
+      margin: 50px auto;
+      padding: 25px;
+      background: #ede7f6; /* soft purple */
+      border-radius: 20px;
+      box-shadow: 5px 5px 15px #b39ddb, -5px -5px 15px #ffffff;
+      text-align: center;
+    }
+
+    h3 {
+      color: #512da8; /* dark purple */
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 12px;
+      border: 2px solid #9575cd;
+      outline: none;
+      font-size: 15px;
+    }
+
+    button {
+      width: 95%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 12px;
+      background: #7e57c2; /* purple button */
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #512da8; /* darker purple on hover */
+    }
+
+    #msg {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    #output {
+      margin-top: 15px;
+      text-align: left;
+      background: #bbdefb; /* soft blue output */
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: inset 2px 2px 5px #b39ddb, inset -2px -2px 5px #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h3>Student Register</h3>
+
+  <input type="text" id="name" placeholder="Student Name">
+  <input type="number" id="age" placeholder="Age">
+  
+  <select id="course">
+    <option value="">Select Course</option>
+    <option>Computer Science</option>
+    <option>Maths</option>
+    <option>Physics</option>
+    <option>Commerce</option>
+  </select>
+
+  <input type="text" id="roll" placeholder="Roll Number">
+  <input type="email" id="email" placeholder="Email">
+
+  <button onclick="register()">Register</button>
+
+  <p id="msg"></p>
+  <div id="output"></div>
+</div>
+
+<script>
+function register() {
+  var name = document.getElementById("name").value;
+  var age = document.getElementById("age").value;
+  var course = document.getElementById("course").value;
+  var roll = document.getElementById("roll").value;
+  var email = document.getElementById("email").value;
+
+  if (name == "" || age == "" || course == "" || roll == "" || email == "") {
+    document.getElementById("msg").innerHTML = "All fields are required";
+    document.getElementById("msg").style.color = "red";
+    return;
+  }
+
+  document.getElementById("msg").innerHTML = "Student Registered Successfully";
+  document.getElementById("msg").style.color = "green";
+
+  document.getElementById("output").innerHTML =
+    "<b>Name:</b> " + name + "<br>" +
+    "<b>Age:</b> " + age + "<br>" +
+    "<b>Course:</b> " + course + "<br>" +
+    "<b>Roll No:</b> " + roll + "<br>" +
+    "<b>Email:</b> " + email;
+}
+</script>
+
+</body>
+</html>
